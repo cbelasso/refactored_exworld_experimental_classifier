@@ -15,5 +15,6 @@ llm-parallelization = { git = "https://explorance-blue.visualstudio.com/Machine_
 [tool.uv.workspace]
 members = [
     "lib/*",
+    "svc/*",
 ]
 

@@ -44,9 +44,12 @@ Design Principles:
 
 __version__ = "0.1.0"
 
-# Content
-# Export
-# Schemas
+from .artifacts import (
+    generate_artifact_content,
+    scaffold_artifacts,
+    sync_artifacts,
+    validate_artifacts,
+)
 from .content import (
     AttributeContent,
     CategoryContent,
@@ -56,17 +59,15 @@ from .content import (
     Example,
     HandcraftedContentProvider,
     Rule,
+    YAMLContentProvider,
 )
 from .export import PromptExporter
-
-# Infrastructure
 from .infrastructure.llm import LLMClient, LLMResponse, MockLLMClient
-
-# Pipeline
 from .pipeline import (
     PipelineBuilder,
     PipelineContext,
     PipelineOrchestrator,
+    ResultMerger,
     Stage,
     StageRegistry,
     create_default_registry,
@@ -96,6 +97,7 @@ __all__ = [
     "Rule",
     "HandcraftedContentProvider",
     "CompositeContentProvider",
+    "YAMLContentProvider",
     # Schemas
     "SchemaFactory",
     "TaxonomySchemaFactory",
@@ -108,6 +110,7 @@ __all__ = [
     "PipelineBuilder",
     "StageRegistry",
     "create_default_registry",
+    "ResultMerger",
     # Stages
     "CategoryDetectionStage",
     "ElementExtractionStage",
@@ -118,4 +121,9 @@ __all__ = [
     "LLMClient",
     "LLMResponse",
     "MockLLMClient",
+    # Artifacts
+    "scaffold_artifacts",
+    "generate_artifact_content",
+    "sync_artifacts",
+    "validate_artifacts",
 ]

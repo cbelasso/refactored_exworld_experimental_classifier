@@ -1,0 +1,19 @@
+[project]
+name = "classification"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "classifier",
+    "ipdb>=0.13.13",
+    "llm-parallelization",
+    "utils",
+
+]
+
+[tool.uv.sources]
+utils = { workspace = true }
+classifier = { workspace = true }
+
+

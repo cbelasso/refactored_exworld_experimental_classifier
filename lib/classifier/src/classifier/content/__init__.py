@@ -27,6 +27,20 @@ from .interfaces import (
     Example,
     Rule,
 )
+from .yaml.provider import YAMLContentProvider
+
+__all__ = [
+    "ContentProvider",
+    "CategoryContent",
+    "ElementContent",
+    "AttributeContent",
+    "Example",
+    "Rule",
+    "CompositeContentProvider",
+    "MergingContentProvider",
+    "HandcraftedContentProvider",
+    "YAMLContentProvider",
+]
 
 __all__ = [
     "CompositeContentProvider",

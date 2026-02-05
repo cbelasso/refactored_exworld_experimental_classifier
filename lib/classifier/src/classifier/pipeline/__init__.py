@@ -25,6 +25,7 @@ Usage:
 """
 
 from .interfaces import PipelineContext, Stage
+from .merger import ResultMerger
 from .orchestrator import PipelineBuilder, PipelineOrchestrator
 from .registry import StageRegistry, create_default_registry
 
@@ -35,4 +36,5 @@ __all__ = [
     "create_default_registry",
     "PipelineOrchestrator",
     "PipelineBuilder",
+    "ResultMerger",
 ]
