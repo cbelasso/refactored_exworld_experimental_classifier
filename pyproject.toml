@@ -1,0 +1,19 @@
+[project]
+name = "explorance-world-2026"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+  "llm-parallelization"
+]
+
+
+[tool.uv.sources]
+llm-parallelization = { git = "https://explorance-blue.visualstudio.com/Machine_Learning/_git/llm-parallelization" }
+
+[tool.uv.workspace]
+members = [
+    "lib/*",
+]
+

@@ -1,0 +1,89 @@
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# -----------------------
+# Virtual environments
+# -----------------------
+.env
+.envrc
+.python-version
+env/
+venv/
+.venv/
+
+# -----------------------
+# Packaging / build
+# -----------------------
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.installed.cfg
+
+# -----------------------
+# Test / coverage
+# -----------------------
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+coverage.xml
+*.cover
+nosetests.xml
+
+# -----------------------
+# Logs
+# -----------------------
+*.log
+
+# -----------------------
+# Docs
+# -----------------------
+docs/_build/
+
+# -----------------------
+# IDEs
+# -----------------------
+.idea/
+.vscode/
+.spyproject/
+.ipynb_checkpoints/
+
+# -----------------------
+# OS / editor junk
+# -----------------------
+.DS_Store
+*.swp
+*.swo
+
+# -----------------------
+# Type checking
+# -----------------------
+.mypy_cache/
+
+# -----------------------
+# Databases
+# -----------------------
+*.db
+*.rdb
+
+# -----------------------
+# Large / generated data (selective!)
+# -----------------------
+data/
+artifacts/
+checkpoints/
+
+# Allow configs explicitly
+!**/config*.json
+!**/schema*.json
+
