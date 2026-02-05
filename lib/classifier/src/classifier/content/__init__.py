@@ -11,10 +11,16 @@ Composition Utilities:
     MergingContentProvider - Merge content from multiple providers
 
 Usage:
-    from refactored_classifier.content import HandcraftedContentProvider
+    from classifier.content import HandcraftedContentProvider, CompositeContentProvider
 
+    # Use handcrafted only
     content = HandcraftedContentProvider()
-    categories = content.get_categories()
+
+    # Combine handcrafted (priority) with YAML (fallback)
+    content = CompositeContentProvider([
+        HandcraftedContentProvider(),
+        YAMLContentProvider(artifacts_dir),
+    ])
 """
 
 from .base import CompositeContentProvider, MergingContentProvider
@@ -30,20 +36,17 @@ from .interfaces import (
 from .yaml.provider import YAMLContentProvider
 
 __all__ = [
+    # Interfaces
     "ContentProvider",
     "CategoryContent",
     "ElementContent",
     "AttributeContent",
     "Example",
     "Rule",
-    "CompositeContentProvider",
-    "MergingContentProvider",
+    # Providers
     "HandcraftedContentProvider",
     "YAMLContentProvider",
-]
-
-__all__ = [
+    # Composition utilities
     "CompositeContentProvider",
     "MergingContentProvider",
-    "HandcraftedContentProvider",
 ]

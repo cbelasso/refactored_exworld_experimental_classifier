@@ -6,11 +6,11 @@ It serves as the PRIMARY content source - the gold standard.
 
 Structure:
 - CATEGORIES: Category definitions with descriptions
+- ELEMENTS: Element definitions by category
 - STAGE1_EXAMPLES: Proven examples for category detection
 - STAGE1_RULES: Disambiguation rules for category detection
 - STAGE2_EXAMPLES: Proven examples for element extraction (by category)
 - STAGE2_RULES: Rules for element extraction
-- (Stage 3 typically uses generated content, but can be added here)
 
 To Modify:
 - Edit the dictionaries/lists in this file directly
@@ -39,69 +39,97 @@ from ..interfaces import (
 # =============================================================================
 
 CATEGORIES: Dict[str, Dict[str, Any]] = {
-    "People": {
-        "description": "Feedback about individuals involved in the conference",
-        "condensed": "People involved (speakers, organizers, staff, attendees)",
-        "keywords": ["speaker", "presenter", "organizer", "staff", "volunteer", "attendee"],
+    "Attendee Engagement & Interaction": {
+        "description": "Feedback about connecting with others, community building, and social aspects",
+        "condensed": "Connecting with others, community building, and social aspects",
+        "keywords": [
+            "community",
+            "networking",
+            "social",
+            "connect",
+            "peers",
+            "knowledge exchange",
+        ],
         "elements": [
-            "Speakers/Presenters",
-            "Organizers",
-            "Staff/Volunteers",
-            "Other Attendees",
+            "Community",
+            "Knowledge Exchange",
+            "Networking",
+            "Social Events",
         ],
     },
-    "Event Logistics": {
-        "description": "Feedback about practical aspects of attending the event",
-        "condensed": "Practical/logistical aspects (venue, registration, scheduling)",
-        "keywords": ["venue", "location", "registration", "schedule", "timing", "wifi", "food"],
+    "Event Logistics & Infrastructure": {
+        "description": "Feedback about physical/technical infrastructure and venue-related services",
+        "condensed": "Physical/technical infrastructure and venue-related services",
+        "keywords": ["venue", "wifi", "food", "hotel", "transportation", "app", "technology"],
         "elements": [
-            "Venue",
-            "Registration",
-            "Scheduling",
-            "Wi-Fi/Technology",
-            "Food & Beverage",
+            "Conference Application/Software",
+            "Conference Venue",
+            "Food/Beverages",
+            "Hotel",
+            "Technological Tools",
+            "Transportation",
+            "Wi-Fi",
+        ],
+    },
+    "Event Operations & Management": {
+        "description": "Feedback about how the conference was organized and run",
+        "condensed": "Conference organization and management",
+        "keywords": [
+            "organization",
+            "registration",
+            "schedule",
+            "timing",
+            "communication",
+            "management",
+        ],
+        "elements": [
+            "Conference",
+            "Conference Registration",
+            "Conference Scheduling",
+            "Messaging & Awareness",
         ],
     },
     "Learning & Content Delivery": {
-        "description": "Feedback about the educational content and how it was delivered",
-        "condensed": "Content quality and delivery (presentations, workshops, materials)",
+        "description": "Feedback about educational content and how it was delivered",
+        "condensed": "Educational content and delivery",
         "keywords": [
             "presentation",
             "workshop",
+            "session",
             "content",
             "learning",
-            "session",
-            "talk",
-            "material",
+            "topics",
+            "demo",
         ],
         "elements": [
-            "Presentations",
-            "Workshops",
+            "Demonstration",
+            "Gained Knowledge",
+            "Open Discussion",
             "Panel Discussions",
-            "Materials",
-            "Q&A Sessions",
+            "Presentations",
+            "Resources/Materials",
+            "Session/Workshop",
+            "Topics",
         ],
     },
-    "Networking & Social": {
-        "description": "Feedback about opportunities to connect with others",
-        "condensed": "Social and networking aspects (events, opportunities, community)",
-        "keywords": ["networking", "social", "connect", "meet", "community", "event"],
-        "elements": [
-            "Networking Events",
-            "Social Events",
-            "Community Building",
-            "Collaboration Opportunities",
+    "People": {
+        "description": "Feedback about specific people or groups at the conference",
+        "condensed": "Specific people or groups at the conference",
+        "keywords": [
+            "speaker",
+            "presenter",
+            "staff",
+            "organizer",
+            "attendee",
+            "expert",
+            "consultant",
         ],
-    },
-    "Overall Experience": {
-        "description": "General impressions and holistic feedback about the conference",
-        "condensed": "General experience and overall impressions",
-        "keywords": ["overall", "general", "experience", "impression", "conference", "event"],
         "elements": [
-            "General Satisfaction",
-            "Value for Money",
-            "Likelihood to Return",
-            "Recommendations",
+            "Conference Staff",
+            "Experts/Consultants",
+            "Participants/Attendees",
+            "Speakers/Presenters",
+            "Unspecified Person",
         ],
     },
 }
@@ -112,65 +140,279 @@ CATEGORIES: Dict[str, Dict[str, Any]] = {
 # =============================================================================
 
 ELEMENTS: Dict[str, Dict[str, Dict[str, Any]]] = {
-    "People": {
-        "Speakers/Presenters": {
-            "description": "Individuals who gave talks, presentations, or led sessions",
-            "condensed": "Talk/session presenters",
-            "keywords": ["speaker", "presenter", "keynote", "talk"],
-            "attributes": ["Knowledge", "Presentation Skills", "Engagement", "Approachability"],
+    "Attendee Engagement & Interaction": {
+        "Community": {
+            "description": "Sense of belonging, community spirit, feeling welcomed, being part of a group, supportive environment",
+            "condensed": "Sense of belonging and community spirit",
+            "keywords": [
+                "community",
+                "belonging",
+                "welcomed",
+                "spirit",
+                "inclusive",
+                "supportive",
+            ],
+            "attributes": ["Inclusivity", "Atmosphere", "Welcoming"],
         },
-        "Organizers": {
-            "description": "People responsible for planning and running the conference",
-            "condensed": "Event planners and coordinators",
-            "keywords": ["organizer", "coordinator", "planner"],
-            "attributes": ["Responsiveness", "Organization", "Communication"],
+        "Knowledge Exchange": {
+            "description": "Sharing experiences with peers, learning from others' implementations, collaborative problem-solving, best practice sharing",
+            "condensed": "Sharing experiences and learning from peers",
+            "keywords": [
+                "sharing",
+                "exchange",
+                "peers",
+                "collaborative",
+                "learn from others",
+                "best practice",
+            ],
+            "attributes": ["Quality", "Relevance", "Engagement"],
         },
-        "Staff/Volunteers": {
-            "description": "Support staff and volunteers helping at the event",
-            "condensed": "Support staff and volunteers",
-            "keywords": ["staff", "volunteer", "helper", "assistant"],
-            "attributes": ["Helpfulness", "Friendliness", "Availability"],
+        "Networking": {
+            "description": "Meeting new people, professional connections, peer discussions, contact exchange, relationship building",
+            "condensed": "Meeting people and making professional connections",
+            "keywords": [
+                "networking",
+                "connections",
+                "meet",
+                "professional",
+                "peers",
+                "contact",
+            ],
+            "attributes": ["Opportunities", "Quality", "Facilitation"],
         },
-        "Other Attendees": {
-            "description": "Fellow conference participants",
-            "condensed": "Fellow participants",
-            "keywords": ["attendee", "participant", "audience", "peer"],
-            "attributes": ["Engagement", "Diversity", "Professionalism"],
+        "Social Events": {
+            "description": "Gala dinners, receptions, evening events, informal gatherings, social activities outside sessions",
+            "condensed": "Social activities and informal gatherings",
+            "keywords": [
+                "gala",
+                "dinner",
+                "reception",
+                "social",
+                "gathering",
+                "party",
+                "evening",
+            ],
+            "attributes": ["Quality", "Atmosphere", "Organization"],
         },
     },
-    "Event Logistics": {
-        "Venue": {
-            "description": "The physical location and facilities",
-            "condensed": "Physical space and facilities",
-            "keywords": ["venue", "location", "building", "room", "space"],
-            "attributes": ["Accessibility", "Comfort", "Size", "Cleanliness"],
+    "Event Logistics & Infrastructure": {
+        "Conference Application/Software": {
+            "description": "Mobile apps, event platforms, Bluepulse app, digital tools for attendees, software for participation",
+            "condensed": "Mobile apps and digital event tools",
+            "keywords": ["app", "application", "software", "platform", "digital", "Bluepulse"],
+            "attributes": ["Usability", "Features", "Reliability"],
         },
-        "Registration": {
-            "description": "The sign-up and check-in process",
-            "condensed": "Sign-up and check-in",
-            "keywords": ["registration", "check-in", "sign-up", "badge"],
-            "attributes": ["Speed", "Ease", "Staff Helpfulness"],
+        "Conference Venue": {
+            "description": "Location, rooms, facilities, seating, temperature, accessibility, physical space",
+            "condensed": "Physical location and facilities",
+            "keywords": [
+                "venue",
+                "location",
+                "room",
+                "facility",
+                "seating",
+                "accessibility",
+                "temperature",
+            ],
+            "attributes": ["Accessibility", "Comfort", "Size", "Cleanliness", "Location"],
         },
-        "Scheduling": {
-            "description": "Timing and organization of sessions",
-            "condensed": "Session timing and breaks",
-            "keywords": ["schedule", "timing", "agenda", "break", "slot"],
-            "attributes": ["Pacing", "Breaks", "Conflicts", "Start/End Times"],
-        },
-        "Wi-Fi/Technology": {
-            "description": "Internet connectivity and tech support",
-            "condensed": "Internet and tech support",
-            "keywords": ["wifi", "wi-fi", "internet", "tech", "AV", "microphone"],
-            "attributes": ["Reliability", "Speed", "Support"],
-        },
-        "Food & Beverage": {
-            "description": "Meals, snacks, and drinks provided",
-            "condensed": "Meals and refreshments",
-            "keywords": ["food", "lunch", "coffee", "snack", "catering", "beverage"],
+        "Food/Beverages": {
+            "description": "Meals, snacks, drinks, catering quality, dietary options, refreshments",
+            "condensed": "Meals, snacks, and catering",
+            "keywords": [
+                "food",
+                "lunch",
+                "coffee",
+                "snack",
+                "catering",
+                "beverage",
+                "dietary",
+                "drinks",
+            ],
             "attributes": ["Quality", "Variety", "Dietary Options", "Availability"],
         },
+        "Hotel": {
+            "description": "Accommodation, lodging, hotel arrangements, room quality",
+            "condensed": "Accommodation and lodging",
+            "keywords": ["hotel", "accommodation", "lodging", "stay", "room"],
+            "attributes": ["Quality", "Location", "Service", "Value"],
+        },
+        "Technological Tools": {
+            "description": "A/V equipment, microphones, projectors, screens, tech setup for presentations",
+            "condensed": "A/V equipment and tech setup",
+            "keywords": ["AV", "microphone", "projector", "screen", "tech", "equipment"],
+            "attributes": ["Quality", "Reliability", "Setup"],
+        },
+        "Transportation": {
+            "description": "Getting to/from venue, shuttles, parking, travel arrangements, logistics of movement",
+            "condensed": "Transportation and travel arrangements",
+            "keywords": ["transportation", "shuttle", "parking", "travel", "bus", "taxi"],
+            "attributes": ["Convenience", "Availability", "Cost"],
+        },
+        "Wi-Fi": {
+            "description": "Internet connectivity, network access, connection quality",
+            "condensed": "Internet connectivity",
+            "keywords": ["wifi", "wi-fi", "internet", "network", "connectivity", "connection"],
+            "attributes": ["Speed", "Reliability", "Availability"],
+        },
     },
-    # Add more categories' elements as needed...
+    "Event Operations & Management": {
+        "Conference": {
+            "description": "General event organization, overall management, event quality, hospitality, general conference experience",
+            "condensed": "Overall event organization and quality",
+            "keywords": [
+                "conference",
+                "event",
+                "organization",
+                "overall",
+                "management",
+                "hospitality",
+            ],
+            "attributes": ["Organization", "Quality", "Value"],
+        },
+        "Conference Registration": {
+            "description": "Sign-up process, check-in, badge pickup, registration system, enrollment",
+            "condensed": "Sign-up and check-in process",
+            "keywords": [
+                "registration",
+                "check-in",
+                "sign-up",
+                "badge",
+                "register",
+                "enrollment",
+            ],
+            "attributes": ["Speed", "Ease", "Staff Helpfulness"],
+        },
+        "Conference Scheduling": {
+            "description": "Session timing, agenda, time management, scheduling conflicts, program structure",
+            "condensed": "Session timing and agenda management",
+            "keywords": ["schedule", "timing", "agenda", "time", "slot", "conflict", "program"],
+            "attributes": ["Pacing", "Breaks", "Conflicts", "Start/End Times"],
+        },
+        "Messaging & Awareness": {
+            "description": "Communication, announcements, information clarity, signage, pre-event information",
+            "condensed": "Communication and information clarity",
+            "keywords": ["communication", "announcement", "information", "signage", "clarity"],
+            "attributes": ["Clarity", "Timeliness", "Accessibility"],
+        },
+    },
+    "Learning & Content Delivery": {
+        "Demonstration": {
+            "description": "Live demos, product showcases, hands-on examples, showing how things work",
+            "condensed": "Live demos and product showcases",
+            "keywords": ["demo", "demonstration", "showcase", "hands-on", "live", "showing"],
+            "attributes": ["Quality", "Relevance", "Engagement"],
+        },
+        "Gained Knowledge": {
+            "description": "What attendees learned, takeaways, actionable insights, things to implement",
+            "condensed": "Learning takeaways and insights",
+            "keywords": [
+                "learned",
+                "takeaway",
+                "insight",
+                "knowledge",
+                "actionable",
+                "implement",
+            ],
+            "attributes": ["Usefulness", "Applicability", "Depth"],
+        },
+        "Open Discussion": {
+            "description": "Q&A sessions, audience participation, interactive discussions, roundtables",
+            "condensed": "Q&A and audience participation",
+            "keywords": [
+                "Q&A",
+                "question",
+                "discussion",
+                "interactive",
+                "participation",
+                "roundtable",
+            ],
+            "attributes": ["Quality", "Time Allocation", "Facilitation"],
+        },
+        "Panel Discussions": {
+            "description": "Panel format sessions, multi-speaker discussions, panel quality",
+            "condensed": "Panel format sessions",
+            "keywords": ["panel", "panelist", "multi-speaker", "discussion"],
+            "attributes": ["Quality", "Diversity", "Moderation"],
+        },
+        "Presentations": {
+            "description": "Individual talks, keynotes, speaker presentations, talk quality and content",
+            "condensed": "Individual talks and keynotes",
+            "keywords": ["presentation", "talk", "keynote", "speech", "lecture"],
+            "attributes": ["Content Quality", "Delivery", "Relevance"],
+        },
+        "Resources/Materials": {
+            "description": "Handouts, slides, documentation, learning materials, presentation copies",
+            "condensed": "Handouts and learning materials",
+            "keywords": [
+                "handout",
+                "slides",
+                "material",
+                "documentation",
+                "resources",
+                "copies",
+            ],
+            "attributes": ["Quality", "Availability", "Usefulness"],
+        },
+        "Session/Workshop": {
+            "description": "Breakout sessions, workshops, training sessions, hands-on learning",
+            "condensed": "Breakout sessions and workshops",
+            "keywords": ["session", "workshop", "breakout", "training", "hands-on"],
+            "attributes": ["Content Quality", "Interactivity", "Duration"],
+        },
+        "Topics": {
+            "description": "Subject matter, themes, content relevance, topic selection, what was covered",
+            "condensed": "Subject matter and themes",
+            "keywords": ["topic", "subject", "theme", "content", "relevance"],
+            "attributes": ["Relevance", "Variety", "Depth"],
+        },
+    },
+    "People": {
+        "Conference Staff": {
+            "description": "Organizers, volunteers, support staff, event team, Explorance team (when mentioned as organizers/hosts)",
+            "condensed": "Organizers and support staff",
+            "keywords": [
+                "staff",
+                "organizer",
+                "volunteer",
+                "team",
+                "support",
+                "Explorance team",
+            ],
+            "attributes": ["Helpfulness", "Friendliness", "Responsiveness"],
+        },
+        "Experts/Consultants": {
+            "description": "Industry experts, product specialists, consultants, Explorance experts (when mentioned for their expertise)",
+            "condensed": "Industry experts and consultants",
+            "keywords": ["expert", "consultant", "specialist", "advisor", "Explorance experts"],
+            "attributes": ["Knowledge", "Helpfulness", "Availability"],
+        },
+        "Participants/Attendees": {
+            "description": "Fellow attendees, other conference-goers, peers at the conference, Blue users, community members",
+            "condensed": "Fellow attendees",
+            "keywords": [
+                "attendee",
+                "participant",
+                "peer",
+                "colleague",
+                "Blue users",
+                "community members",
+            ],
+            "attributes": ["Engagement", "Diversity", "Professionalism"],
+        },
+        "Speakers/Presenters": {
+            "description": "Keynote speakers, session presenters, panelists, people giving talks",
+            "condensed": "Keynote speakers and presenters",
+            "keywords": ["speaker", "presenter", "keynote", "panelist"],
+            "attributes": ["Knowledge", "Presentation Skills", "Engagement", "Approachability"],
+        },
+        "Unspecified Person": {
+            "description": "References to people without clear role identification",
+            "condensed": "People without clear role",
+            "keywords": ["someone", "person", "they", "people"],
+            "attributes": ["Helpfulness", "Interaction Quality"],
+        },
+    },
 }
 
 
@@ -180,59 +422,87 @@ ELEMENTS: Dict[str, Dict[str, Dict[str, Any]]] = {
 
 STAGE1_EXAMPLES: List[Dict[str, Any]] = [
     {
-        "text": "The keynote speaker was absolutely brilliant. Her insights on AI were groundbreaking.",
+        "text": "The networking sessions were fantastic and I made great connections with peers from other institutions.",
         "output": {
-            "categories_present": ["People", "Learning & Content Delivery"],
-            "reasoning": "Discusses a speaker (People) and the content of their talk (Learning & Content Delivery)",
+            "categories_present": ["Attendee Engagement & Interaction"],
+            "has_classifiable_content": True,
+            "reasoning": "Discusses networking and peer connections",
         },
     },
     {
-        "text": "WiFi kept dropping during the sessions and the venue was too cold.",
+        "text": "The WiFi kept dropping during sessions and the room was too cold.",
         "output": {
-            "categories_present": ["Event Logistics"],
-            "reasoning": "Discusses technical issues (WiFi) and venue conditions - both are logistics",
+            "categories_present": ["Event Logistics & Infrastructure"],
+            "has_classifiable_content": True,
+            "reasoning": "Mentions WiFi connectivity and venue temperature issues",
         },
     },
     {
-        "text": "I loved the networking dinner! Met so many interesting people in my field.",
-        "output": {
-            "categories_present": ["Networking & Social"],
-            "reasoning": "Discusses a social event and meeting people - networking focused",
-        },
-    },
-    {
-        "text": "Overall, this was the best conference I've attended in years. Totally worth the price.",
-        "output": {
-            "categories_present": ["Overall Experience"],
-            "reasoning": "General evaluation of the entire conference experience",
-        },
-    },
-    {
-        "text": "The workshop materials were outdated, and the presenter seemed unprepared.",
+        "text": "The keynote speaker was brilliant and the presentation on machine learning was very insightful.",
         "output": {
             "categories_present": ["Learning & Content Delivery", "People"],
-            "reasoning": "Discusses content quality (materials) and presenter preparation",
+            "has_classifiable_content": True,
+            "reasoning": "Discusses both the presentation content and the speaker",
         },
     },
     {
-        "text": "Registration was a breeze - got my badge in under a minute!",
+        "text": "The conference was well organized but I wish there were more hands-on workshops. The Explorance team was very helpful.",
         "output": {
-            "categories_present": ["Event Logistics"],
-            "reasoning": "Specifically about the registration process - a logistical aspect",
+            "categories_present": [
+                "Event Operations & Management",
+                "Learning & Content Delivery",
+                "People",
+            ],
+            "has_classifiable_content": True,
+            "reasoning": "Covers organization quality, workshop content request, and staff praise",
         },
     },
     {
-        "text": "Not enough vegetarian options at lunch.",
+        "text": "I loved connecting with the Blue community and sharing knowledge with other users.",
         "output": {
-            "categories_present": ["Event Logistics"],
-            "reasoning": "Food-related feedback falls under logistics",
+            "categories_present": ["Attendee Engagement & Interaction"],
+            "has_classifiable_content": True,
+            "reasoning": "Discusses community connection and knowledge sharing among attendees",
         },
     },
     {
-        "text": "The Q&A sessions were too short. Just when discussions got interesting, they cut us off.",
+        "text": "The registration process was slow and confusing.",
         "output": {
-            "categories_present": ["Learning & Content Delivery", "Event Logistics"],
-            "reasoning": "Discusses Q&A quality (content delivery) and time constraints (scheduling/logistics)",
+            "categories_present": ["Event Operations & Management"],
+            "has_classifiable_content": True,
+            "reasoning": "Feedback about registration process",
+        },
+    },
+    {
+        "text": "Seeing is believing!",
+        "output": {
+            "categories_present": ["Event Operations & Management"],
+            "has_classifiable_content": True,
+            "reasoning": "Vague positive sentiment about the conference overall",
+        },
+    },
+    {
+        "text": "Data integrity never goes out of style.",
+        "output": {
+            "categories_present": [],
+            "has_classifiable_content": False,
+            "reasoning": "General statement not specifically about conference feedback",
+        },
+    },
+    {
+        "text": "The food was excellent and there were plenty of vegetarian options.",
+        "output": {
+            "categories_present": ["Event Logistics & Infrastructure"],
+            "has_classifiable_content": True,
+            "reasoning": "Feedback about catering and dietary options",
+        },
+    },
+    {
+        "text": "Great demo of the new analytics features! The product team really knows their stuff.",
+        "output": {
+            "categories_present": ["Learning & Content Delivery", "People"],
+            "has_classifiable_content": True,
+            "reasoning": "Discusses demonstration content and the people who presented",
         },
     },
 ]
@@ -243,83 +513,353 @@ STAGE1_EXAMPLES: List[Dict[str, Any]] = [
 # =============================================================================
 
 STAGE1_RULES: List[str] = [
-    "If feedback mentions both a person AND their content/delivery, mark BOTH 'People' AND 'Learning & Content Delivery'",
-    "General satisfaction statements ('great conference', 'would recommend') → 'Overall Experience'",
-    "Food, venue, WiFi, registration, scheduling → 'Event Logistics' (even if people are mentioned serving food)",
-    "If networking is mentioned alongside content discussions, consider if it's social (→ Networking) or content-focused (→ Learning)",
-    "Staff helpfulness at registration → 'Event Logistics' (not 'People', unless specifically praising an individual)",
+    "A comment can belong to MULTIPLE categories if it discusses multiple aspects.",
+    "Focus on what the comment is ABOUT, not just words mentioned.",
+    "'Community' refers to the feeling of belonging; 'Networking' refers to the act of meeting people.",
+    "'Presentations' = talk quality/content; 'Speakers/Presenters' = the people themselves.",
+    "General praise like 'great conference' without specifics → Event Operations & Management > Conference.",
+    "If a comment mentions both the content AND the presenter, include BOTH categories.",
+    "Food, venue, WiFi, hotel, transportation → Event Logistics & Infrastructure",
+    "Registration, scheduling, communication, organization → Event Operations & Management",
+    "If feedback is not specifically about the conference experience, mark has_classifiable_content as false",
 ]
 
 
 # =============================================================================
 # STAGE 2 EXAMPLES (Element Extraction) - By Category
+# Battle-tested examples from production prompts
 # =============================================================================
 
 STAGE2_EXAMPLES: Dict[str, List[Dict[str, Any]]] = {
-    "People": [
+    "Attendee Engagement & Interaction": [
         {
-            "text": "The keynote speaker was amazing, really knew her stuff.",
+            "text": "The community is so supportive and open to sharing their knowledge.",
             "output": {
-                "elements": [
+                "classifications": [
                     {
-                        "element": "Speakers/Presenters",
+                        "excerpt": "The community is so supportive",
+                        "reasoning": "Expresses feeling of supportive community environment",
+                        "element": "Community",
                         "sentiment": "positive",
-                        "confidence": 5,
+                    },
+                    {
+                        "excerpt": "open to sharing their knowledge",
+                        "reasoning": "References peer knowledge sharing",
+                        "element": "Knowledge Exchange",
+                        "sentiment": "positive",
                     },
                 ],
             },
         },
         {
-            "text": "Volunteers were helpful but the organizers seemed stressed and hard to reach.",
+            "text": "Change the networking session. Nobody from Explorance showed up at my table. Sitting there with 1 other person was awkward.",
             "output": {
-                "elements": [
-                    {"element": "Staff/Volunteers", "sentiment": "positive", "confidence": 4},
-                    {"element": "Organizers", "sentiment": "negative", "confidence": 4},
+                "classifications": [
+                    {
+                        "excerpt": "Change the networking session. Nobody from Explorance showed up at my table. Sitting there with 1 other person was awkward",
+                        "reasoning": "Negative experience with networking session format",
+                        "element": "Networking",
+                        "sentiment": "negative",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "I would have liked to go to the Marina for the gala dinner but I understand that would have been challenging.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "I would have liked to go to the Marina for the gala dinner",
+                        "reasoning": "Suggestion about gala dinner venue",
+                        "element": "Social Events",
+                        "sentiment": "mixed",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "It only took an hour to go from brand new user to genuinely feeling like a part of the Blue community.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "genuinely feeling like a part of the Blue community",
+                        "reasoning": "Expresses sense of belonging to community",
+                        "element": "Community",
+                        "sentiment": "positive",
+                    },
                 ],
             },
         },
     ],
-    "Event Logistics": [
+    "Event Logistics & Infrastructure": [
         {
-            "text": "Venue was beautiful but the WiFi was terrible.",
+            "text": "Having the Bluepulse app information earlier. Those without a Smart phone were not able to evaluate the sessions.",
             "output": {
-                "elements": [
-                    {"element": "Venue", "sentiment": "positive", "confidence": 5},
-                    {"element": "Wi-Fi/Technology", "sentiment": "negative", "confidence": 5},
+                "classifications": [
+                    {
+                        "excerpt": "Having the Bluepulse app information earlier. Those without a Smart phone were not able to evaluate the sessions",
+                        "reasoning": "Feedback about conference app accessibility and communication",
+                        "element": "Conference Application/Software",
+                        "sentiment": "negative",
+                    },
                 ],
             },
         },
         {
-            "text": "Lunch was decent, nice variety of options.",
+            "text": "Wish there was hand sanitizer more available around the conference.",
             "output": {
-                "elements": [
-                    {"element": "Food & Beverage", "sentiment": "positive", "confidence": 4},
+                "classifications": [
+                    {
+                        "excerpt": "Wish there was hand sanitizer more available around the conference",
+                        "reasoning": "Request for venue amenity",
+                        "element": "Conference Venue",
+                        "sentiment": "negative",
+                    },
                 ],
             },
         },
         {
-            "text": "Too many sessions at the same time, had to miss several I wanted to attend.",
+            "text": "have drinks available, even if a cash bar, at events.",
             "output": {
-                "elements": [
-                    {"element": "Scheduling", "sentiment": "negative", "confidence": 5},
+                "classifications": [
+                    {
+                        "excerpt": "have drinks available, even if a cash bar, at events",
+                        "reasoning": "Request for beverage availability",
+                        "element": "Food/Beverages",
+                        "sentiment": "negative",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "The WiFi kept dropping and made it hard to follow along.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "The WiFi kept dropping and made it hard to follow along",
+                        "reasoning": "Complaint about internet connectivity",
+                        "element": "Wi-Fi",
+                        "sentiment": "negative",
+                    },
+                ],
+            },
+        },
+    ],
+    "Event Operations & Management": [
+        {
+            "text": "An excellent, informative, and well-organised event.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "An excellent, informative, and well-organised event",
+                        "reasoning": "General positive feedback about event organization",
+                        "element": "Conference",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "The registration process was rather slow, I did sign up quite close to the date but I never even got an invoice.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "The registration process was rather slow, I did sign up quite close to the date but I never even got an invoice",
+                        "reasoning": "Complaint about registration process and invoicing",
+                        "element": "Conference Registration",
+                        "sentiment": "negative",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "More repeated sessions which, while not bad, the time could have been spent doing more hands-on activities.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "More repeated sessions which, while not bad, the time could have been spent doing more hands-on activities",
+                        "reasoning": "Feedback about session scheduling and program structure",
+                        "element": "Conference Scheduling",
+                        "sentiment": "mixed",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "BNG 2022 has set the bar high in terms of hospitality. They go beyond their call for duty.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "BNG 2022 has set the bar high in terms of hospitality. They go beyond their call for duty",
+                        "reasoning": "Praise for conference hospitality and management",
+                        "element": "Conference",
+                        "sentiment": "positive",
+                    },
                 ],
             },
         },
     ],
     "Learning & Content Delivery": [
         {
-            "text": "The workshops were hands-on and practical. Learned so much!",
+            "text": "The presentations were better than the panel discussion. Better panelists would be preferred.",
             "output": {
-                "elements": [
-                    {"element": "Workshops", "sentiment": "positive", "confidence": 5},
+                "classifications": [
+                    {
+                        "excerpt": "The presentations were better than the panel discussion",
+                        "reasoning": "Comparison of presentation vs panel format quality",
+                        "element": "Presentations",
+                        "sentiment": "positive",
+                    },
+                    {
+                        "excerpt": "Better panelists would be preferred",
+                        "reasoning": "Criticism of panel discussion quality",
+                        "element": "Panel Discussions",
+                        "sentiment": "negative",
+                    },
                 ],
             },
         },
         {
-            "text": "Presentations were too basic for the advertised audience level.",
+            "text": "Provide presentation materials hard or soft copies.",
             "output": {
-                "elements": [
-                    {"element": "Presentations", "sentiment": "negative", "confidence": 4},
+                "classifications": [
+                    {
+                        "excerpt": "Provide presentation materials hard or soft copies",
+                        "reasoning": "Request for presentation materials/handouts",
+                        "element": "Resources/Materials",
+                        "sentiment": "negative",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "More technical workshops would be great. The presentations were good.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "More technical workshops would be great",
+                        "reasoning": "Request for more workshop sessions",
+                        "element": "Session/Workshop",
+                        "sentiment": "mixed",
+                    },
+                    {
+                        "excerpt": "The presentations were good",
+                        "reasoning": "Positive feedback on presentations",
+                        "element": "Presentations",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "I came away with a significant 'to do' list which will help us leverage insights collected from our students.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "I came away with a significant 'to do' list which will help us leverage insights collected from our students",
+                        "reasoning": "Actionable takeaways gained from conference",
+                        "element": "Gained Knowledge",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "I wonder if some round table discussions would help.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "I wonder if some round table discussions would help",
+                        "reasoning": "Suggestion for open discussion format",
+                        "element": "Open Discussion",
+                        "sentiment": "mixed",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "high quality papers and mix of topics from increasing response rates through to machine learning applied to text analytics",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "high quality papers and mix of topics from increasing response rates through to machine learning applied to text analytics",
+                        "reasoning": "Praise for topic variety and quality",
+                        "element": "Topics",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+    ],
+    "People": [
+        {
+            "text": "The Explorance staff are so genuine, knowledgeable, and accessible.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "The Explorance staff are so genuine, knowledgeable, and accessible",
+                        "reasoning": "Praise for conference staff qualities",
+                        "element": "Conference Staff",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "The ability to talk not only to Explorance Experts but to network with community members made this valuable.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "talk not only to Explorance Experts",
+                        "reasoning": "Reference to product experts",
+                        "element": "Experts/Consultants",
+                        "sentiment": "positive",
+                    },
+                    {
+                        "excerpt": "network with community members",
+                        "reasoning": "Reference to fellow attendees",
+                        "element": "Participants/Attendees",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "The Blue users you'll meet are smart, creative, and always willing to share and collaborate.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "The Blue users you'll meet are smart, creative, and always willing to share and collaborate",
+                        "reasoning": "Praise for fellow attendees",
+                        "element": "Participants/Attendees",
+                        "sentiment": "positive",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "some speakers appeared to have changed or modified the presentation from the original abstract",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "some speakers appeared to have changed or modified the presentation from the original abstract",
+                        "reasoning": "Criticism of speakers deviating from abstract",
+                        "element": "Speakers/Presenters",
+                        "sentiment": "negative",
+                    },
+                ],
+            },
+        },
+        {
+            "text": "Nobody from Explorance showed up at my table.",
+            "output": {
+                "classifications": [
+                    {
+                        "excerpt": "Nobody from Explorance showed up at my table",
+                        "reasoning": "Complaint about staff absence at networking",
+                        "element": "Conference Staff",
+                        "sentiment": "negative",
+                    },
                 ],
             },
         },
@@ -329,24 +869,46 @@ STAGE2_EXAMPLES: Dict[str, List[Dict[str, Any]]] = {
 
 # =============================================================================
 # STAGE 2 RULES - By Category
+# Battle-tested rules from production prompts
 # =============================================================================
 
 STAGE2_RULES: Dict[str, List[str]] = {
-    "People": [
-        "If 'speaker' is mentioned in context of their talk quality, focus on Speakers/Presenters",
-        "Generic 'staff' without context → Staff/Volunteers",
-        "Mentions of 'the team' or 'they' in organizational context → Organizers",
+    "Attendee Engagement & Interaction": [
+        "Extract the EXACT excerpt from the comment that relates to each element.",
+        "Each excerpt should be classified to ONE element only.",
+        "Sentiment: positive (praise), negative (criticism), neutral (observation), mixed (both positive and negative).",
+        "'Community' = feeling of belonging; 'Networking' = act of meeting/connecting.",
+        "'Knowledge Exchange' = peer-to-peer learning; different from formal presentations.",
     ],
-    "Event Logistics": [
-        "'Tech issues' during presentations → Wi-Fi/Technology (not Presentations)",
-        "Complaints about seating → Venue",
-        "'Breaks' can mean Scheduling (timing) or Venue (break room quality) - use context",
+    "Event Logistics & Infrastructure": [
+        "Extract the EXACT excerpt from the comment that relates to each element.",
+        "Each excerpt should be classified to ONE element only.",
+        "Sentiment: positive (praise), negative (criticism), neutral (observation), mixed (both positive and negative).",
+        "'Conference Application/Software' = apps for attendees; 'Technological Tools' = A/V equipment for sessions.",
+    ],
+    "Event Operations & Management": [
+        "Extract the EXACT excerpt from the comment that relates to each element.",
+        "Each excerpt should be classified to ONE element only.",
+        "Sentiment: positive (praise), negative (criticism), neutral (observation), mixed (both positive and negative).",
+        "General praise like 'great conference' or 'well organized' → Conference element.",
+        "Comments about session timing or agenda structure → Conference Scheduling.",
     ],
     "Learning & Content Delivery": [
-        "If discussing hands-on activities → Workshops",
-        "If discussing seated talks → Presentations",
-        "Panel-specific feedback → Panel Discussions",
-        "Handouts, slides shared after → Materials",
+        "Extract the EXACT excerpt from the comment that relates to each element.",
+        "Each excerpt should be classified to ONE element only.",
+        "Sentiment: positive (praise), negative (criticism), neutral (observation), mixed (both positive and negative).",
+        "'Presentations' = quality of talks; 'Topics' = what subjects were covered.",
+        "'Session/Workshop' = format of learning; 'Gained Knowledge' = what was learned.",
+        "Requests for 'more workshops' or 'hands-on sessions' → Session/Workshop.",
+    ],
+    "People": [
+        "Extract the EXACT excerpt from the comment that relates to each element.",
+        "Each excerpt should be classified to ONE element only.",
+        "Sentiment: positive (praise), negative (criticism), neutral (observation), mixed (both positive and negative).",
+        "'Explorance team' as hosts/organizers → Conference Staff.",
+        "'Explorance experts' for knowledge/consulting → Experts/Consultants.",
+        "'Blue users' or 'community members' → Participants/Attendees.",
+        "Named speakers or 'the presenter' → Speakers/Presenters.",
     ],
 }
 
@@ -409,7 +971,7 @@ class HandcraftedContentProvider(ContentProvider):
                 name=attr_name,
                 element=element,
                 category=category,
-                description=f"Attribute: {attr_name}",  # Simplified - can be expanded
+                description=f"Attribute: {attr_name}",
                 condensed_description=attr_name,
             )
             for attr_name in element_data.get("attributes", [])
@@ -461,7 +1023,7 @@ class HandcraftedContentProvider(ContentProvider):
                     for ex in cat_examples
                 ]
 
-        # Stage 3 typically uses generated content
+        # Stage 3 typically uses generated content, but can be added here
         return []
 
     def get_rules(
